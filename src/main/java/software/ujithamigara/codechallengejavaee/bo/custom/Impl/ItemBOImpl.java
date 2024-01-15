@@ -36,4 +36,8 @@ public class ItemBOImpl implements ItemBO {
     public boolean deleteItem(String id) throws Exception {
         return itemDAO.delete(id);
     }
+    @Override
+    public ItemDTO getItem(String itemId) throws Exception {
+        return Convert.itemEntityToDto(itemDAO.get(itemId));
+    }
 }
