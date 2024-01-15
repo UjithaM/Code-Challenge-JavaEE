@@ -9,4 +9,5 @@ public interface CRUD<T> extends SuperDAO{
     boolean save(T t) throws Exception;
     boolean update(T t) throws Exception;
     boolean delete(String id) throws Exception;
+    T get(String id) throws Exception;
 }
