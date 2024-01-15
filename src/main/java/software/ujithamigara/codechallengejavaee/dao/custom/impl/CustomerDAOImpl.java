@@ -3,9 +3,9 @@ package software.ujithamigara.codechallengejavaee.dao.custom.impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import software.ujithamigara.codechallengejavaee.dao.custom.CustomerDAO;
 import software.ujithamigara.codechallengejavaee.entity.Customer;
+import software.ujithamigara.codechallengejavaee.util.HibernateUtil;
 
 import java.util.List;
 
@@ -13,8 +13,9 @@ public class CustomerDAOImpl implements CustomerDAO {
     private static final String GET_ALL_CUSTOMER = "FROM Customer";
     private final SessionFactory sessionFactory;
     public CustomerDAOImpl() {
-        this.sessionFactory = new Configuration().configure().buildSessionFactory();
+        this.sessionFactory = HibernateUtil.getSessionFactory();
     }
+
     @Override
     public List<Customer> getAll() throws Exception {
         try (Session session = sessionFactory.openSession()) {
