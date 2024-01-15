@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/thogakade</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">user</property>
+
+    <property name="hibernate.c3p0.min_size">5</property>
+    <property name="hibernate.c3p0.max_size">20</property>
+    <property name="hibernate.c3p0.timeout">300</property>
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <property name="hibernate.c3p0.idle_test_period">3000</property>
+
+    <!-- Specify dialect -->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+    <!-- Enable Hibernate's automatic session context management -->
+    <property name="hibernate.current_session_context_class">thread</property>
+
+    <!-- Echo all executed SQL to stdout -->
+    <property name="hibernate.show_sql">true</property>
+
+    <!-- Drop and re-create the database schema on startup -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+    <!-- Mention annotated class -->
+    <mapping class="software.ujithamigara.codechallengejavaee.entity.Customer" />
+    <mapping class="software.ujithamigara.codechallengejavaee.entity.Item" />
+    <mapping class="software.ujithamigara.codechallengejavaee.entity.Orders" />
+    <mapping class="software.ujithamigara.codechallengejavaee.entity.OrderItem" />
+  </session-factory>
+</hibernate-configuration>
