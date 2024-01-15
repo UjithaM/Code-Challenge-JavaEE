@@ -13,11 +13,11 @@ public class DAOFactory {
         return daoFactory == null ? daoFactory = new DAOFactory() : daoFactory;
     }
 
-    public enum ServiceTypes{
+    public enum DAOTypes{
         CUSTOMER, ITEM, ORDER;
     }
 
-    public SuperDAO getService(ServiceTypes type){
+    public SuperDAO getDAO(DAOTypes type){
         switch (type){
             case CUSTOMER: return new CustomerDAOImpl();
             case ITEM: return new ItemDAOImpl();

@@ -25,4 +25,9 @@ public class OrderDAOImpl implements OrderDAO {
     public boolean delete(String id) throws Exception {
         return false;
     }
+
+    @Override
+    public Orders get(String id) throws Exception {
+        return new Orders();
+    }
 }

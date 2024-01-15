@@ -25,4 +25,9 @@ public class ItemDAOImpl implements ItemDAO {
     public boolean delete(String id) throws Exception {
         return false;
     }
+
+    @Override
+    public Item get(String id) throws Exception {
+        return new Item();
+    }
 }
