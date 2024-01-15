@@ -23,4 +23,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Orders> orders;
 
+    public Customer(String customerId) {
+        this.customerId = customerId;
+    }
 }
