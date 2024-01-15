@@ -11,4 +11,5 @@ public interface CustomerBO extends SuperBO {
     boolean saveCustomer(CustomerDTO dto) throws Exception;
     boolean updateCustomer(CustomerDTO dto) throws Exception;
     boolean deleteCustomer(String id) throws Exception;
+    CustomerDTO getCustomer(String id) throws Exception;
 }
