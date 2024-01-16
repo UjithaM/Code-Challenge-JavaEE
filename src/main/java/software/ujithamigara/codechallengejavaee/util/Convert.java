@@ -32,10 +32,11 @@ public class Convert {
 
 
     public static Orders ordersDTOToOder(OrderDTO dto){
-        Customer customer = new Customer(dto.getCustomerId());
+        Customer customer = new Customer();
+        customer.setCustomerId(dto.getCustomerId());
         return new Orders(dto.getOrderId(), dto.getDate(), customer, dto.getNetTotal(), dto.getDiscount(), dto.getCash(), dto.getSubTotal(), dto.getOrderItems());
     }
-    public static OrderDTO orderDetailEntityToDto(Orders orders){
+    public static OrderDTO ordersEntityToDto(Orders orders){
         return new OrderDTO(orders.getOrderId(), orders.getDate(), orders.getCustomer().getCustomerId(), orders.getNetTotal(), orders.getDiscount(), orders.getCash(), orders.getSubTotal(), orders.getOrderItems());
     }
 }

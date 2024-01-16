@@ -6,5 +6,13 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     @Getter
-    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    private static final SessionFactory sessionFactory;
+
+    static {
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
 }
