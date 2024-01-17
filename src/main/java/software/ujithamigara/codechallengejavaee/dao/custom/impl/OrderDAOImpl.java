@@ -4,6 +4,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import software.ujithamigara.codechallengejavaee.dao.custom.OrderDAO;
 import software.ujithamigara.codechallengejavaee.entity.OrderItem;
 import software.ujithamigara.codechallengejavaee.entity.Orders;
@@ -14,6 +16,7 @@ import java.util.List;
 public class OrderDAOImpl implements OrderDAO {
     private static final String GET_ALL_ORDER_DATA = "FROM Orders";
     private final SessionFactory sessionFactory;
+    final static Logger logger = LoggerFactory.getLogger(ItemDAOImpl.class);
     public OrderDAOImpl() {
 
         this.sessionFactory = HibernateUtil.getSessionFactory();
@@ -31,8 +34,10 @@ public class OrderDAOImpl implements OrderDAO {
             }
 
             tx.commit();
+            logger.info("All orders retrieved successfully !");
             return orders;
         } catch (Exception e) {
+            logger.error("Error in getAll in OrderDAOImpl class");
             throw new RuntimeException("Error retrieving orders", e);
         }
     }
@@ -54,9 +59,10 @@ public class OrderDAOImpl implements OrderDAO {
                 }
 
                 transaction.commit();
-
+                logger.info("Order saved successfully !");
                 return true;
             } catch (Exception e) {
+                logger.error("Error occurred while saving order !");
                 transaction.rollback();
                 throw new RuntimeException(e);
             }
@@ -95,8 +101,10 @@ public class OrderDAOImpl implements OrderDAO {
             session.merge(existingOrder);
 
             transaction.commit();
+            logger.info("Order updated successfully !");
             return true;
         } catch (Exception e) {
+            logger.error("Error occurred while updating order !");
             throw new RuntimeException(e);
         }
     }
@@ -109,11 +117,14 @@ public class OrderDAOImpl implements OrderDAO {
             if (orders != null) {
                 session.remove(orders);
                 transaction.commit();
+                logger.info("Order deleted successfully !");
                 return true;
             } else {
+                logger.error("Order not found !");
                 return false;
             }
         } catch (Exception e) {
+            logger.error("Error occurred while deleting order !");
             throw new RuntimeException(e);
         }
     }
@@ -123,8 +134,10 @@ public class OrderDAOImpl implements OrderDAO {
         try (Session session = sessionFactory.openSession()) {
             Orders orders = session.get(Orders.class, id);
             Hibernate.initialize(orders.getOrderItems());
+            logger.info("Order retrieved successfully !");
             return orders;
         } catch (Exception e) {
+            logger.error("Error occurred while getting order !");
             throw new RuntimeException(e);
         }
     }
