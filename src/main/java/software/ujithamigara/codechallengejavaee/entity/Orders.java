@@ -18,7 +18,7 @@ public class Orders {
     @Id
     private String orderId;
     private String date;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     private Customer customer;
     private Double netTotal;
